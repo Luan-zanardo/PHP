@@ -1,0 +1,87 @@
+<html>
+    <head>
+    <TITLE> Pesquisa veículos</TITLE>
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <style type="text/css">
+        .form-controle {
+            display: block;
+            width: 35%; 
+            height: 60px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                margin-left: 35px;
+        }
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+            margin-left: 35px;
+            }
+            .h1, h1 {
+            font-size: 36px;
+            margin-left: 35px;
+            }
+
+    </style>
+    </head>
+    <body>
+        <div align="center">
+            <form name="formulario" method="post" action="Home.php">
+            <h1>AUTO DETAILING</h1><br>
+            
+            <h1>Pesquisa: </h1>
+            <label for="">Categorias: </label>
+                <select name="categoria">
+                    <option value="" selected="selected"></option>
+                    <?php
+                    $query = mysql_query("select codigo, descricao from categoria");
+                    while($categorias = mysql_fetch_array($query))
+                    {?>
+                    <option value="<?php echo $categorias['codigo']?>">
+                                <?php echo $categorias['descricao']  ?></option>
+                    <?php }
+                    ?>
+                </select>
+
+                <label for="">Classificacaos: </label>
+                <select name="classificacao">
+                    <option value="" selected="selected"></option>
+                    <?php
+                    $query = mysql_query("select codigo, nome from classificacao");
+                    while($classificacoes = mysql_fetch_array($query))
+                    {?>
+                    <option value="<?php echo $classificacoes['codigo']?>">
+                                <?php echo $classificacoes['nome']  ?></option>
+                    <?php }
+                    ?>
+                </select>
+
+                <label for="">Marcas: </label>
+                <select name="marca">
+                    <option value="" selected="selected"></option>
+                    <?php
+                    $query = mysql_query("select codigo, nome from marca");
+                    while($marcas = mysql_fetch_array($query))
+                    {?>
+                    <option value="<?php echo $marcas['codigo']?>">
+                                <?php echo $marcas['nome']  ?></option>
+                    <?php }
+                    ?>
+                </select>
+                <input  type="submit" name="pesquisar" value="Pesquisar">
+            </form>
+        </div>
+    </body>
+</html>
